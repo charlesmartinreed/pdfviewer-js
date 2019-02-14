@@ -2,6 +2,8 @@
 const url = '../docs/sample.pdf'
 const pageCount = document.querySelector('#page-count');
 const pageNumber = document.querySelector('#page-num');
+const prevButton = document.getElementById('prev-page');
+const nextButton = document.getElementById('next-page');
 
 let pdfDoc = null, // represents grabbed document
 	pageNum = 1,
@@ -41,6 +43,34 @@ const renderPage = num => {
 	});
 };
 
+//Check for pages rendering - called when we attempt to choose pages
+const queueRenderPage = num => {
+	if(pageIsRendering) {
+		//set pending page to the passed in num
+		pageNumIsPending = num;
+	} else {
+		//otherwise, render the passed in page
+		renderPage(num);
+	}
+}
+
+//show prev/next pages
+const showPrevPage = () => {
+	if(pageNum <= 1) {
+		return; //if on first page
+	}
+	pageNum--;
+	queueRenderPage(pageNum)
+}
+
+const showNextPage = () => {
+	if(pageNum >= pdfDoc.numPages) {
+		return
+	}
+	pageNum++;
+	queueRenderPage(pageNum);
+}
+
 //GET document
 //pdfjsLib obj provided by pdf.js
 pdfjsLib.getDocument(url).promise.then(pdfDoc_ => {
@@ -49,3 +79,7 @@ pdfjsLib.getDocument(url).promise.then(pdfDoc_ => {
 
 	renderPage(pageNum)
 });
+
+//Button events
+prevButton.addEventListener('click', showPrevPage);
+nextButton.addEventListener('click', showNextPage);
