@@ -12,9 +12,20 @@
 		</head>
 		<body>
 
+			<div class="top-bar">
+				<button class="btn" id="prev-page">
+					<i class="fas fa-arrow-circle-left">Prev Page</i>
+				</button>
+				<button class="btn" id="next-page">
+					<i class="fas fa-arrow-circle-right">Prev Page</i>
+				</button>
+				<span class="page-info">
+					Page <span id="page-num"></span> of <span id="page-count"></span>
+				</span>
+			</div>
+
 			<!-- CANVAS TO PLACE PDF -->
-			<i class="fas fa-arrow-circle-left">Prev Page</i>
-			<i class="fas fa-arrow-circle-right">Next Page</i>
+			<canvas id="pdf-render"></canvas>
 
 
 			<script src="js/main.js"></script>
