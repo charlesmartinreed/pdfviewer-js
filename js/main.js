@@ -77,8 +77,18 @@ pdfjsLib.getDocument(url).promise.then(pdfDoc_ => {
 	pdfDoc = pdfDoc_;
 	pageCount.textContent = pdfDoc.numPages;
 
-	renderPage(pageNum)
-});
+	renderPage(pageNum);
+})
+	// catch for when the document does not exist/cannot be found
+	.catch(err => {
+		const div = document.createElement('div');
+		div.className = 'error';
+		div.appendChild(document.createTextNode(err.message));
+		document.querySelector('.container').insertBefore(div, canvas);
+
+		//remove the top bar
+		document.querySelector('.top-bar').style.display = 'none';
+	});
 
 //Button events
 prevButton.addEventListener('click', showPrevPage);

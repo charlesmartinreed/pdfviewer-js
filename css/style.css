@@ -3,23 +3,40 @@
 	padding: 0;
 }
 
+body {
+	background: #222;
+}
+
 .container {
 	width: 100%;
 }
 
 .top-bar {
+	text-align: center;
 	background: #333;
-	color: #FFF;
+	color: #d9d9d9;
 	padding: 1rem;
 }
 
 .btn {
-	background: coral;
-	color: #FFF;
+	background: #e88a1a;
+	color: #d9d9d9;
 	border: none;
 	outline: none;
 	cursor: pointer;
 	padding: 0.7rem 2rem;
+}
+
+.page-info {
+	display: block;
+	padding-top: 0.7rem;
+}
+
+canvas {
+}
+
+#prev-page {
+	/* margin-left: 50vw; */
 }
 
 .btn-hover {
@@ -31,7 +48,7 @@
 }
 
 .error {
-	background: orangered;
-	color: #fff;
+	background: #cf3030;
+	color: #d9d9d9;
 	padding: 1rem;
 }
